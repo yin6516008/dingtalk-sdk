@@ -3,7 +3,7 @@ package dingtalk
 import (
 	"encoding/json"
 	"fmt"
-	"io"
+	"io/ioutil"
 	"net/http"
 	"net/url"
 )
@@ -32,7 +32,7 @@ func (c *CorpInternalAuth) GetToken() (*GetTokenRes, error) {
 		return nil, err
 	}
 
-	body, err := io.ReadAll(resp.Body)
+	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}
