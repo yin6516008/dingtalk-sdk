@@ -28,6 +28,7 @@ type GetUserInfoResult struct {
 	DeptIDList    []int64         `json:"dept_id_list"`
 	JobNumber     string          `json:"job_number"`
 	Email         string          `json:"email"`
+	OrgMail       string          `json:"org_email"`
 	LeaderInDept  []LeaderInDept  `json:"leader_in_dept"`
 	ManagerUserid string          `json:"manager_userid"`
 	Mobile        string          `json:"mobile"`
