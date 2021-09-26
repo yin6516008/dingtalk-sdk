@@ -59,3 +59,21 @@ type ListSubDepartmentIdRes struct {
 type ListSubDepartmentIdResult struct {
 	DeptIDList []int64 `json:"dept_id_list"`
 }
+
+// 获取指定用户的所有父部门列表
+type GetAllParentDepartmentListOfUserParams struct {
+	Userid string `json:"userid"`
+}
+
+type GetAllParentDepartmentListOfUserRes struct {
+	BaseResponse
+	Result GetAllParentDepartmentListOfUserResult
+}
+
+type GetAllParentDepartmentListOfUserResult struct {
+	ParentList []ParentList `json:"parent_list"`
+}
+
+type ParentList struct {
+	ParentDeptIDList []int64 `json:"parent_dept_id_list"`
+}

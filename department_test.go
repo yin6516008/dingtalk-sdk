@@ -53,5 +53,20 @@ func TestListSubDepartmentId(t *testing.T) {
 	}
 
 	t.Log(data)
+}
 
+func TestGetAllParentDepartmentListOfUser(t *testing.T) {
+	client, err := NewDingtalkClientWithEnv()
+	if err != nil {
+		t.Error(err)
+	}
+
+	params := &GetAllParentDepartmentListOfUserParams{
+		Userid: "1223575014880951",
+	}
+	data, _, err := client.GetAllParentDepartmentListOfUser(params)
+	if err != nil {
+		t.Error(err)
+	}
+	t.Log(data)
 }

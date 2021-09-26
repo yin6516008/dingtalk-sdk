@@ -48,3 +48,18 @@ func (c *Client) ListSubDepartmentId(params *ListSubDepartmentIdParams) (*ListSu
 
 	return data, resp, err
 }
+
+// 获取指定用户的所有父部门列表  https://developers.dingtalk.com/document/app/queries-the-list-of-all-parent-departments-of-a-user
+func (c *Client) GetAllParentDepartmentListOfUser(params *GetAllParentDepartmentListOfUserParams) (*GetAllParentDepartmentListOfUserRes, *http.Response, error) {
+	req, err := c.NewRequest(http.MethodPost, "/topapi/v2/department/listparentbyuser", nil, params)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	var data *GetAllParentDepartmentListOfUserRes
+	resp, err := c.Do(req, &data)
+	if err != nil {
+		return nil, resp, err
+	}
+	return data, resp, err
+}
