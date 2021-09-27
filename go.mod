@@ -1,4 +1,4 @@
-module dingtalk-sdk
+module github.com/yin6516008/dingtalk-sdk
 
 go 1.16
 
