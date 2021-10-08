@@ -8,10 +8,10 @@ type GetUserInfoParams struct {
 
 type GetUserInfoRes struct {
 	BaseResponse
-	Result GetUserInfoResult `json:"result"`
+	Result User `json:"result"`
 }
 
-type GetUserInfoResult struct {
+type User struct {
 	Extension     string          `json:"extension"`
 	Unionid       string          `json:"unionid"`
 	Boss          bool            `json:"boss"`

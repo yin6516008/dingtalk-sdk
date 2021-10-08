@@ -1,6 +1,8 @@
 package dingtalk
 
-import "net/http"
+import (
+	"net/http"
+)
 
 // 根据userid获取用户详情  https://developers.dingtalk.com/document/app/query-user-details
 func (c *Client) GetUserInfo(params *GetUserInfoParams) (*GetUserInfoRes, *http.Response, error) {
