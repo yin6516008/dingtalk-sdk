@@ -54,3 +54,16 @@ type Markdown struct {
 	Title string `json:"title"`
 	Text  string `json:"text"`
 }
+
+// Link类型消息结构体
+type LinkMessage struct {
+	Msgtype string `json:"msgtype"`
+	Link    Link   `json:"link"`
+}
+
+type Link struct {
+	MessageURL string `json:"messageUrl"`
+	PicURL     string `json:"picUrl"`
+	Title      string `json:"title"`
+	Text       string `json:"text"`
+}
