@@ -51,3 +51,20 @@ func (c *Client) GetUserIdWithDepartment(params *GetUserIdWithDepartmentParams) 
 
 	return data, resp, err
 }
+
+// 根据unionid获取userid https://open.dingtalk.com/document/orgapp-server/query-a-user-by-the-union-id
+func (c *Client) GetUseridByUnionid(unionid string) (data *GetUseridByUnionidRes, resp *http.Response, err error) {
+	body := struct {
+		Unionid string `json:"unionid"`
+	}{unionid}
+	req, err := c.NewRequest(http.MethodGet, "/user/getUseridByUnionid", nil, body)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	resp, err = c.Do(req, &data)
+	if err != nil {
+		return nil, resp, err
+	}
+	return
+}

@@ -1,6 +1,8 @@
 package dingtalk
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestGetUserInfoByFreeCode(t *testing.T) {
 	client, err := NewDingtalkClientWithEnv()
@@ -9,7 +11,7 @@ func TestGetUserInfoByFreeCode(t *testing.T) {
 	}
 
 	params := &GetUserInfoByFreeCodeParams{
-		Code: "faewfawef",
+		Code: "f3167a9fbd0131cba8e45eeb6298f263",
 	}
 	data, _, err := client.GetUserInfoByFreeCode(params)
 	if err != nil {

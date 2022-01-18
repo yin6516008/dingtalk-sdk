@@ -127,3 +127,13 @@ type GetUserIdWithDepartmentRes struct {
 type GetUserIdWithDepartmentResult struct {
 	UseridList []string `json:"userid_list"`
 }
+
+type GetUseridByUnionidRes struct {
+	BaseResponse
+	Result GetUseridByUnionidResult `json:"result"`
+}
+
+type GetUseridByUnionidResult struct {
+	ContactType string `json:"contact_type"`
+	Userid      string `json:"userid"`
+}

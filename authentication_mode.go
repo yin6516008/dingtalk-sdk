@@ -14,3 +14,17 @@ type GetUserInfoByFreeCodeRes struct {
 	Sys               bool   `json:"sys"`
 	Userid            string `json:"userid"`
 }
+
+type GetUserInfoByCodeQeury struct {
+	AccessKey string `json:"accessKey" url:"accessKey"`
+	Timestamp string `json:"timestamp" url:"timestamp"`
+	Signature string `json:"signature" url:"signature"`
+}
+
+type GetUserInfoByCodeRes struct {
+	BaseResponse
+	Nick                 string `json:"nick"`
+	Unionid              string `json:"unionid"`
+	Openid               string `json:"openid"`
+	MainOrgAuthHighLevel bool   `json:"main_org_auth_high_level"`
+}
