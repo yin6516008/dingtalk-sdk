@@ -134,6 +134,6 @@ type GetUseridByUnionidRes struct {
 }
 
 type GetUseridByUnionidResult struct {
-	ContactType string `json:"contact_type"`
+	ContactType int    `json:"contact_type"`
 	Userid      string `json:"userid"`
 }

@@ -53,3 +53,16 @@ func TestGetUserIdWithDepartment(t *testing.T) {
 	}
 	t.Log(data)
 }
+
+func TestGetUseridByUnionid(t *testing.T) {
+	client, err := NewDingtalkClientWithEnv()
+	if err != nil {
+		t.Error(err)
+	}
+
+	data, _, err := client.GetUserIdByUnionid("xxx")
+	if err != nil {
+		t.Error(err)
+	}
+	t.Log(data)
+}
