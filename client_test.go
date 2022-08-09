@@ -46,6 +46,32 @@ func NewDingtalkClientWithEnv() (*Client, error) {
 	}, nil
 }
 
+func NewDingtalkClientWithParams(appKey, appSecret string) (*Client, error) {
+	auth := &CorpInternalAuth{
+		AppKey:    appKey,
+		AppSecret: appSecret,
+	}
+
+	token, err := auth.GetToken()
+	if err != nil {
+		return nil, err
+	}
+
+	if token.Errcode != 0 {
+		return nil, fmt.Errorf(token.Errmsg)
+	}
+
+	return &Client{
+		accessToken:        token.AccessToken,
+		accessTokenExpired: time.Now().Unix() + token.ExpiresIn,
+		auth:               auth,
+		baseUrl: &url.URL{
+			Scheme: "https",
+			Host:   "oapi.dingtalk.com",
+		},
+		http: &http.Client{},
+	}, nil
+}
 func TestCorpClient(t *testing.T) {
 	client, err := NewDingtalkClientWithEnv()
 	if err != nil {
