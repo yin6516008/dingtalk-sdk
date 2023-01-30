@@ -137,3 +137,18 @@ type GetUseridByUnionidResult struct {
 	ContactType int    `json:"contact_type"`
 	Userid      string `json:"userid"`
 }
+
+type GetUserinfoByCodeRes struct {
+	BaseResponse
+	Result GetUserinfoByCodeResult `json:"result"`
+}
+
+type GetUserinfoByCodeResult struct {
+	Userid            string `json:"userid"`
+	DeviceId          string `json:"device_id"`
+	Sys               bool   `json:"sys"`
+	SysLevel          int    `json:"sys_level"`
+	AssociatedUnionid string `json:"associated_unionid"`
+	Unionid           string `json:"unionid"`
+	Name              string `json:"name"`
+}

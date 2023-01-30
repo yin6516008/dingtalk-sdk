@@ -68,3 +68,20 @@ func (c *Client) GetUserIdByUnionid(unionid string) (data *GetUseridByUnionidRes
 	}
 	return
 }
+
+// 根据免登码获取用户信息 https://open.dingtalk.com/document/orgapp-server/query-a-user-by-the-union-id
+func (c *Client) GetUserInfoByCode(code string) (data *GetUserinfoByCodeRes, resp *http.Response, err error) {
+	body := struct {
+		Code string `json:"code"`
+	}{code}
+	req, err := c.NewRequest(http.MethodPost, "/topapi/v2/user/getuserinfo", nil, body)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	resp, err = c.Do(req, &data)
+	if err != nil {
+		return nil, resp, err
+	}
+	return
+}
