@@ -6,7 +6,7 @@ import (
 )
 
 type Client struct {
-	accessToken        string
+	AccessToken        string
 	accessTokenExpired int64
 	auth               AuthInterface
 	baseUrl            *url.URL

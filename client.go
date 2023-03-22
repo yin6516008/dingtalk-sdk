@@ -24,7 +24,7 @@ func NewDingtalkClient(auth AuthInterface) (*Client, error) {
 	}
 
 	return &Client{
-		accessToken:        token.AccessToken,
+		AccessToken:        token.AccessToken,
 		accessTokenExpired: time.Now().Unix() + token.ExpiresIn,
 		auth:               auth,
 		baseUrl: &url.URL{
@@ -48,7 +48,7 @@ func (c *Client) NewRequest(method, path string, queryParams interface{}, bodyPa
 			return nil, fmt.Errorf(token.Errmsg)
 		}
 
-		c.accessToken = token.AccessToken
+		c.AccessToken = token.AccessToken
 		c.accessTokenExpired = time.Now().Unix() + token.ExpiresIn
 	}
 
@@ -75,7 +75,7 @@ func (c *Client) NewRequest(method, path string, queryParams interface{}, bodyPa
 	if err != nil {
 		return nil, err
 	}
-	q.Set("access_token", c.accessToken)
+	q.Set("access_token", c.AccessToken)
 	c.baseUrl.RawQuery = q.Encode()
 
 	req, err := http.NewRequest(method, c.baseUrl.String(), bytes.NewBuffer(body))

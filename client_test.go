@@ -35,7 +35,7 @@ func NewDingtalkClientWithEnv() (*Client, error) {
 	}
 
 	return &Client{
-		accessToken:        token.AccessToken,
+		AccessToken:        token.AccessToken,
 		accessTokenExpired: time.Now().Unix() + token.ExpiresIn,
 		auth:               auth,
 		baseUrl: &url.URL{
@@ -62,7 +62,7 @@ func NewDingtalkClientWithParams(appKey, appSecret string) (*Client, error) {
 	}
 
 	return &Client{
-		accessToken:        token.AccessToken,
+		AccessToken:        token.AccessToken,
 		accessTokenExpired: time.Now().Unix() + token.ExpiresIn,
 		auth:               auth,
 		baseUrl: &url.URL{
@@ -78,6 +78,6 @@ func TestCorpClient(t *testing.T) {
 		t.Error(err)
 	}
 
-	fmt.Println(client.accessToken)
+	fmt.Println(client.AccessToken)
 
 }

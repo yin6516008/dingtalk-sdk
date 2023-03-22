@@ -18,8 +18,8 @@ func TestSendWorkerNotification(t *testing.T) {
 	}
 
 	params := &SendWorkerNotificationParams{
-		UseridList: "1223575014880951",
-		AgentID:    "1217926382",
+		UseridList: "",
+		AgentID:    "",
 		MSG:        msg,
 	}
 
@@ -39,12 +39,54 @@ func TestGetWorkerNotificationResult(t *testing.T) {
 
 	params := &GetWorkerNotificationResultParams{
 		TaskID:  0,
-		AgentID: 1217926382,
+		AgentID: 0,
 	}
 
 	data, _, err := client.GetWorkerNotificationResult(params)
 	if err != nil {
 		t.Error(err)
 	}
+	t.Log(data)
+}
+
+type ActionCard struct {
+	Msgtype    string           `json:"msgtype"`
+	ActionCard ActionCardDetail `json:"action_card"`
+}
+
+type ActionCardDetail struct {
+	Title       string `json:"title"`
+	Markdown    string `json:"markdown"`
+	SingleTitle string `json:"single_title"`
+	SingleUrl   string `json:"single_url"`
+}
+
+func TestSendActionCardWorkerNotification(t *testing.T) {
+	client, err := NewDingtalkClientWithParams("", "")
+	if err != nil {
+		t.Error(err)
+	}
+
+	message := ActionCard{
+		Msgtype: "action_card",
+		ActionCard: ActionCardDetail{
+			Title:       "",
+			Markdown:    "Markdown",
+			SingleTitle: "点击进入工单系统",
+			SingleUrl:   "",
+		},
+	}
+
+	params := &SendWorkerNotificationParams{
+		UseridList: "",
+		AgentID:    "",
+		MSG:        message,
+	}
+
+	data, _, err := client.SendWorkerNotification(params)
+	if err != nil {
+		t.Error(err)
+	}
+
 	t.Log(data)
 }

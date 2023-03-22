@@ -1,23 +1,33 @@
 package dingtalk
 
 import (
+	"encoding/json"
 	"testing"
 )
 
 func TestGetDepartmentInfo(t *testing.T) {
-	client, err := NewDingtalkClientWithEnv()
+	//client, err := NewDingtalkClientWithEnv()
+	//if err != nil {
+	//	t.Error(err)
+	//}
+	client, err := NewDingtalkClientWithParams("", "")
 	if err != nil {
 		t.Error(err)
 	}
 
 	params := &GetDepartmentInfoParams{
-		DeptID: 59009774,
+		DeptID: 1,
 	}
 
 	data, _, err := client.GetDepartmentInfo(params)
 	if err != nil {
 		t.Error(err)
 	}
+	marshal, err := json.Marshal(data.Result)
+	if err != nil {
+		return
+	}
+	t.Log(string(marshal))
 
 	t.Log(data)
 
@@ -62,7 +72,7 @@ func TestGetAllParentDepartmentListOfUser(t *testing.T) {
 	}
 
 	params := &GetAllParentDepartmentListOfUserParams{
-		Userid: "1223575014880951",
+		Userid: "",
 	}
 	data, _, err := client.GetAllParentDepartmentListOfUser(params)
 	if err != nil {
