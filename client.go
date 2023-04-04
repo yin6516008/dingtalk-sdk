@@ -108,3 +108,19 @@ func (c *Client) Do(req *http.Request, v interface{}) (*http.Response, error) {
 	}
 	return resp, err
 }
+
+func (c *Client) GetToken() (string, error) {
+	// 判断Token是否过期
+	if c.accessTokenExpired <= time.Now().Unix() {
+		token, err := c.auth.GetToken()
+		if err != nil {
+			return "", err
+		}
+
+		c.AccessToken = token.AccessToken
+		c.accessTokenExpired = time.Now().Unix() + token.ExpiresIn
+		return c.AccessToken, nil
+	}
+
+	return c.AccessToken, nil
+}

@@ -81,3 +81,15 @@ func TestCorpClient(t *testing.T) {
 	fmt.Println(client.AccessToken)
 
 }
+
+func TestNewToken(t *testing.T) {
+	client, err := NewDingtalkClientWithParams("", "")
+	if err != nil {
+		t.Error(err)
+	}
+	token, err := client.GetToken()
+	if err != nil {
+		return
+	}
+	fmt.Println("token", token)
+}
