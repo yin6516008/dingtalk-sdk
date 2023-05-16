@@ -17,7 +17,7 @@ func TestGetUserInfo(t *testing.T) {
 		t.Error(err)
 	}
 	params := &GetUserInfoParams{
-		Userid: "012637062230704031",
+		Userid: "fdfd",
 	}
 	data, _, err := client.GetUserInfo(params)
 	if err != nil {
@@ -76,7 +76,7 @@ func TestGetUserInfoWithDepartment(t *testing.T) {
 	}
 
 	params := &GetUserInfoWithDepartmentParams{
-		DeptID: 5900,
+		DeptID: 111,
 		Size:   12,
 	}
 
@@ -88,19 +88,23 @@ func TestGetUserInfoWithDepartment(t *testing.T) {
 }
 
 func TestGetUserIdWithDepartment(t *testing.T) {
-	client, err := NewDingtalkClientWithEnv()
+	//client, err := NewDingtalkClientWithEnv()
+	//if err != nil {
+	//	t.Error(err)
+	//}
+	client, err := NewDingtalkClientWithParams("", "")
 	if err != nil {
 		t.Error(err)
 	}
 
 	params := &GetUserIdWithDepartmentParams{
-		DeptID: 0,
+		DeptID: 12,
 	}
 	data, _, err := client.GetUserIdWithDepartment(params)
 	if err != nil {
 		t.Error(err)
 	}
-	t.Log(data)
+	t.Log(data.Result.UseridList)
 }
 
 func TestGetUseridByUnionid(t *testing.T) {

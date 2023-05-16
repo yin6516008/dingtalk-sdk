@@ -39,7 +39,7 @@ func TestListDepartment(t *testing.T) {
 		t.Error(err)
 	}
 	params := ListDepartmentParams{
-		DeptID: 59009774,
+		DeptID: 11,
 	}
 	data, _, err := client.ListDepartment(&params)
 	if err != nil {
@@ -55,7 +55,7 @@ func TestListSubDepartmentId(t *testing.T) {
 	}
 
 	params := &ListSubDepartmentIdParams{
-		DeptID: 59009774,
+		DeptID: 11,
 	}
 	data, _, err := client.ListSubDepartmentId(params)
 	if err != nil {

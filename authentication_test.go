@@ -11,7 +11,7 @@ func TestGetUserInfoByFreeCode(t *testing.T) {
 	}
 
 	params := &GetUserInfoByFreeCodeParams{
-		Code: "f3167a9fbd0131cba8e45eeb6298f263",
+		Code: "",
 	}
 	data, _, err := client.GetUserInfoByFreeCode(params)
 	if err != nil {
