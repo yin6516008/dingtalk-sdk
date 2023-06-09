@@ -17,7 +17,7 @@ func TestGetUserInfo(t *testing.T) {
 		t.Error(err)
 	}
 	params := &GetUserInfoParams{
-		Userid: "fdfd",
+		Userid: "",
 	}
 	data, _, err := client.GetUserInfo(params)
 	if err != nil {
@@ -70,21 +70,30 @@ func Reverse(arr *[]string) {
 	}
 }
 func TestGetUserInfoWithDepartment(t *testing.T) {
-	client, err := NewDingtalkClientWithEnv()
+	//client, err := NewDingtalkClientWithEnv()
+	client, err := NewDingtalkClientWithParams("", "")
+	if err != nil {
+		t.Error(err)
+	}
 	if err != nil {
 		t.Error(err)
 	}
 
 	params := &GetUserInfoWithDepartmentParams{
-		DeptID: 111,
-		Size:   12,
+		DeptID: 10086,
+		Cursor: 0,
+		Size:   100,
 	}
 
 	data, _, err := client.GetUserInfoWithDepartment(params)
 	if err != nil {
 		t.Error(err)
 	}
-	t.Log(data)
+	marshal, err := json.Marshal(data.Result)
+	if err != nil {
+		return
+	}
+	t.Log(string(marshal))
 }
 
 func TestGetUserIdWithDepartment(t *testing.T) {

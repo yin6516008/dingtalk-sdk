@@ -66,7 +66,11 @@ func TestListSubDepartmentId(t *testing.T) {
 }
 
 func TestGetAllParentDepartmentListOfUser(t *testing.T) {
-	client, err := NewDingtalkClientWithEnv()
+	//client, err := NewDingtalkClientWithEnv()
+	//if err != nil {
+	//	t.Error(err)
+	//}
+	client, err := NewDingtalkClientWithParams("", "")
 	if err != nil {
 		t.Error(err)
 	}
@@ -78,5 +82,34 @@ func TestGetAllParentDepartmentListOfUser(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
+	marshal, err := json.Marshal(data.Result)
+	if err != nil {
+		return
+	}
+	t.Log(string(marshal))
+
 	t.Log(data)
+}
+
+func TestListParentByDept(t *testing.T) {
+
+	client, err := NewDingtalkClientWithParams("", "")
+	if err != nil {
+		t.Error(err)
+	}
+
+	params := &ListParentByDeptParams{DeptID: 666}
+
+	data, _, err := client.ListParentByDept(params)
+	if err != nil {
+		t.Error(err)
+	}
+	marshal, err := json.Marshal(data.Result)
+	if err != nil {
+		return
+	}
+	t.Log(string(marshal))
+
+	t.Log(data)
+
 }

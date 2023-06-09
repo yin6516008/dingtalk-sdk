@@ -77,3 +77,15 @@ type GetAllParentDepartmentListOfUserResult struct {
 type ParentList struct {
 	ParentDeptIDList []int64 `json:"parent_dept_id_list"`
 }
+
+type ListParentByDeptParams struct {
+	DeptID int64 `json:"dept_id"`
+}
+type ListParentByDeptRes struct {
+	BaseResponse
+	Result ListParentByDeptResult
+}
+
+type ListParentByDeptResult struct {
+	ParentIdList []int64 `json:"parent_id_list"`
+}
