@@ -152,3 +152,16 @@ type GetUserinfoByCodeResult struct {
 	Unionid           string `json:"unionid"`
 	Name              string `json:"name"`
 }
+
+type GetUserinfoByMobileParams struct {
+	Mobile string `json:"mobile"`
+}
+
+type GetUserinfoByMobileRes struct {
+	BaseResponse
+	Result GetUserinfoByMobileResult `json:"result"`
+}
+
+type GetUserinfoByMobileResult struct {
+	Userid string `json:"userid"`
+}

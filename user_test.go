@@ -40,6 +40,28 @@ func TestGetUserInfo(t *testing.T) {
 	//	fmt.Println("2",	strings.Join(org,"-")+"｜"+data.Result.Title)
 }
 
+func TestGetUserInfoByMobile(t *testing.T) {
+	client, err := NewDingtalkClientWithParams("", "")
+	if err != nil {
+		fmt.Println("err1", err)
+		return
+	}
+	params := &GetUserinfoByMobileParams{
+		Mobile: "",
+	}
+	data, _, err := client.GetUserInfoByMobile(params)
+	if err != nil {
+		fmt.Println("err2", err)
+		return
+	}
+	marshal, err := json.Marshal(data)
+	if err != nil {
+		fmt.Println("err3", err)
+		return
+	}
+	t.Log(string(marshal))
+}
+
 func DiGui(client *Client, depId int64, org []string) []string {
 
 	params := &GetDepartmentInfoParams{
@@ -72,6 +94,7 @@ func Reverse(arr *[]string) {
 func TestGetUserInfoWithDepartment(t *testing.T) {
 	//client, err := NewDingtalkClientWithEnv()
 	client, err := NewDingtalkClientWithParams("", "")
+
 	if err != nil {
 		t.Error(err)
 	}
@@ -80,7 +103,7 @@ func TestGetUserInfoWithDepartment(t *testing.T) {
 	}
 
 	params := &GetUserInfoWithDepartmentParams{
-		DeptID: 10086,
+		DeptID: 1,
 		Cursor: 0,
 		Size:   100,
 	}

@@ -113,3 +113,40 @@ func TestListParentByDept(t *testing.T) {
 	t.Log(data)
 
 }
+
+var list []int64
+
+func TestListAllSubDept(t *testing.T) {
+	list = []int64{}
+	client, err := NewDingtalkClientWithParams("", "")
+	if err != nil {
+		t.Error(err)
+	}
+	//var list []int64
+	ListAllSubDept(client, 1)
+}
+
+func ListAllSubDept(client *Client, depId int64) {
+	data, err := fetchData(client, depId)
+	if err != nil {
+		return
+	}
+
+	list = append(list, data...)
+	if len(data) != 0 {
+		for _, v := range data {
+			ListAllSubDept(client, v)
+		}
+	}
+
+	return
+}
+
+func fetchData(client *Client, depId int64) ([]int64, error) {
+	params := &ListSubDepartmentIdParams{DeptID: depId}
+	info, _, err := client.ListSubDepartmentId(params)
+	if err != nil {
+		return nil, err
+	}
+	return info.Result.DeptIDList, nil
+}

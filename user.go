@@ -85,3 +85,19 @@ func (c *Client) GetUserInfoByCode(code string) (data *GetUserinfoByCodeRes, res
 	}
 	return
 }
+
+// 根据手机号获取用户id https://open.dingtalk.com/document/orgapp/query-users-by-phone-number
+func (c *Client) GetUserInfoByMobile(params *GetUserinfoByMobileParams) (*GetUserinfoByMobileRes, *http.Response, error) {
+	req, err := c.NewRequest(http.MethodPost, "/topapi/v2/user/getbymobile", nil, params)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	var data *GetUserinfoByMobileRes
+	resp, err := c.Do(req, &data)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return data, resp, nil
+}
